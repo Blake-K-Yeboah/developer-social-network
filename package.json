@@ -3,6 +3,20 @@
   "version": "1.0.0",
   "description": "A social network for developers",
   "main": "server.js",
+  "scripts": {
+    "serve": "node server",
+    "start": "nodemon server"
+  },
   "author": "Blake Yeboah",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.22.2",
+    "bcryptjs": "^2.4.3",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
