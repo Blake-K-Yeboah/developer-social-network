@@ -1,0 +1,8 @@
+{
+  "name": "developer-social-network",
+  "version": "1.0.0",
+  "description": "A social network for developers",
+  "main": "server.js",
+  "author": "Blake Yeboah",
+  "license": "MIT"
+}
