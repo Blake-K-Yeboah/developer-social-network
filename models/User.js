@@ -11,6 +11,13 @@ const userSchema = new Schema({
          followedAt: String,
       },
    ],
+   messages: [
+      {
+         body: String,
+         username: String,
+         sentAt: String,
+      },
+   ],
 });
 
 module.exports = model("User", userSchema);
