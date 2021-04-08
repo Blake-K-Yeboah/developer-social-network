@@ -13,7 +13,7 @@ module.exports = {
             throw new Error(err);
          }
       },
-      async getPost(postId) {
+      async getPost(_, { postId }) {
          const post = await Post.findById(postId);
          if (post) {
             return post;
