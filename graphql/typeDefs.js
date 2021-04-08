@@ -5,6 +5,11 @@ module.exports = gql`
       username: String
       followedAt: String
    }
+   type Message {
+      body: String
+      username: String
+      sentAt: String
+   }
    type User {
       id: ID!
       email: String!
@@ -12,6 +17,8 @@ module.exports = gql`
       username: String!
       createdAt: String!
       followers: [Follower]
+      messages: [Message]
+      followerCount: Int!
    }
    input RegisterInput {
       username: String!
@@ -27,5 +34,9 @@ module.exports = gql`
       register(registerInput: RegisterInput): User!
       login(username: String!, password: String!): User!
       follow(userId: ID!): User!
+      sendMessage(body: String, to: ID!): User!
+   }
+   type Subscription {
+      newMessage: Message!
    }
 `;
