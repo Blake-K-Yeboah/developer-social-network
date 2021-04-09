@@ -55,6 +55,10 @@ module.exports = gql`
       follow(userId: ID!): User!
       sendMessage(body: String, to: ID!): User!
       createPost(body: String): Post!
+      deletePost(postId: ID!): Post!
+      editPost(newBody: String!, postId: ID!): Post!
+      likePost(postId: ID!): Post!
+      createComment(body: String!, postId: ID!): Post!
    }
    type Subscription {
       newMessage: Message!
