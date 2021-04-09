@@ -40,5 +40,64 @@ module.exports = {
 
          return post;
       },
+      async deletePost(_, { postId }, context) {
+         const { username } = checkAuth(context);
+
+         const post = await Post.findById(postId);
+
+         if (!post) {
+            throw new Error("No post with that id.");
+         }
+
+         if (post.username === username) {
+            await post.delete();
+            return post;
+         } else {
+            throw new Error("You must be the owner of the post to delete it.");
+         }
+      },
+      async editPost(_, { newBody, postId }, context) {
+         const { username } = checkAuth(context);
+
+         if (newBody.trim() === "") {
+            throw new UserInputError("Must enter a body");
+         }
+
+         if (!post) {
+            throw new Error("No post with that id.");
+         }
+
+         const post = await Post.findById(postId);
+
+         if (post.username === username) {
+            post.body = newBody;
+            const updatedPost = post.save();
+            return updatedPost;
+         } else {
+            throw new Error("You must be the owner of the post to delete it.");
+         }
+      },
+      async likePost(_, { postId }, context) {
+         const { username } = checkAuth(context);
+         const post = await Post.findById(postId);
+
+         if (!post) {
+            throw new Error("No post with that id.");
+         }
+
+         if (post.likes.find((like) => like.username === username)) {
+            post.likes = post.likes.filter(
+               (like) => like.username !== username
+            );
+         } else {
+            post.likes.push({
+               username,
+               likedAt: new Date().toISOString(),
+            });
+         }
+
+         const updatedPost = post.save();
+         return updatedPost;
+      },
    },
 };
