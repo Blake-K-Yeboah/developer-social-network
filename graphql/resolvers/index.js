@@ -7,6 +7,10 @@ module.exports = {
    User: {
       followerCount: (parent) => parent.followers.length,
    },
+   Post: {
+      commentCount: (parent) => parent.comments.length,
+      likeCount: (parent) => parent.likes.length,
+   },
    Query: {
       ...usersResolvers.Query,
       ...postsResolvers.Query,
